@@ -17,9 +17,7 @@ const Index = () => {
         duration: 3000,
         isClosable: true,
       });
-      return;
-    }
-    if (!message.trim()) {
+    } else if (!message.trim()) {
       toast({
         title: "Error",
         description: "Message cannot be empty.",
@@ -27,11 +25,11 @@ const Index = () => {
         duration: 3000,
         isClosable: true,
       });
-      return;
+    } else {
+      const newMessage = { username, content: message, timestamp: new Date() };
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      setMessage(""); // Clear message input after sending
     }
-    const newMessage = { username, content: message, timestamp: new Date() };
-    setMessages([...messages, newMessage]);
-    setMessage(""); // Clear message input after sending
   };
 
   return (
